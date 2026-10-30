@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827"><title>ShopNest — Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">S</span> ShopNest</a>
+  <div class="search-wrap"><input id="searchInput" type="search" placeholder="Search products…" aria-label="Search products"></div>
+  <nav><button class="btn btn-ghost" id="ordersBtn">My orders</button><button class="btn btn-primary" id="cartBtn">Cart <span id="cartCount">0</span></button><button class="btn btn-ghost" id="authBtn">Sign in</button></nav>
+</header>
+<main>
+  <section class="hero"><div><p class="eyebrow">THE EVERYDAY EDIT</p><h1>Good finds.<br><span>Better prices.</span></h1><p>Thoughtfully picked essentials, delivered to your door.</p><a class="btn btn-light" href="#products">Shop collection ↓</a></div><div class="hero-art"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="hero-card"><span>NEW ARRIVALS</span><strong>Small things.<br>Big joy.</strong><span class="hero-spark">✳</span></div></div></section>
+  <section class="section-head" id="products"><div><p class="eyebrow">CURATED FOR YOU</p><h2>Explore products</h2></div><div id="categoryFilters" class="chips"></div></section>
+  <div id="notice" class="notice hidden"></div>
+  <section id="productGrid" class="product-grid"><div class="loading">Loading products…</div></section>
+</main>
+<footer><span>© <span id="year"></span> ShopNest</span><span>Secure checkout · COD & UPI</span></footer>
+
+<dialog id="authDialog" class="modal"><form method="dialog" class="modal-head"><div><p class="eyebrow">YOUR ACCOUNT</p><h2 id="authTitle">Welcome back</h2></div><button class="icon-btn" value="cancel" aria-label="Close">×</button></form>
+  <div class="modal-body"><div class="tabs"><button class="tab active" id="loginTab">Sign in</button><button class="tab" id="signupTab">Create account</button></div>
+  <form id="authForm" class="stack"><label>Email<input type="email" id="authEmail" required autocomplete="email"></label><label>Password<input type="password" id="authPassword" required minlength="6" autocomplete="current-password"></label><button class="btn btn-primary" id="authSubmit">Sign in</button><p class="muted small">Customer account only. Admin access is managed separately.</p></form><p id="authError" class="error"></p></div></dialog>
+
+<dialog id="cartDialog" class="modal wide"><div class="modal-head"><div><p class="eyebrow">YOUR BAG</p><h2>Your cart</h2></div><button class="icon-btn" data-close="cartDialog">×</button></div><div class="modal-body"><div id="cartItems"></div><div id="cartSummary" class="cart-summary"></div><button class="btn btn-primary full" id="checkoutBtn">Continue to checkout</button></div></dialog>
+
+<dialog id="checkoutDialog" class="modal wide"><div class="modal-head"><div><p class="eyebrow">ALMOST THERE</p><h2>Checkout</h2></div><button class="icon-btn" data-close="checkoutDialog">×</button></div><div class="modal-body"><form id="checkoutForm" class="stack"><div class="two-col"><label>Full name<input id="shipName" required maxlength="100"></label><label>Phone number<input id="shipPhone" required inputmode="tel" pattern="[0-9 +()-]{10,18}" maxlength="18"></label></div><label>Delivery address<textarea id="shipAddress" rows="3" required maxlength="500"></textarea></label><div class="two-col"><label>City<input id="shipCity" required maxlength="80"></label><label>PIN code<input id="shipPin" required inputmode="numeric" pattern="[0-9]{6}" maxlength="6"></label></div><label>Payment method<select id="paymentMethod"><option value="cod">Cash on Delivery</option><option value="upi">UPI (manual payment)</option></select></label><div id="upiInstructions" class="notice hidden"><strong>UPI payment instructions</strong><p>After placing the order, use your UPI app to pay the displayed total to this store UPI ID: <strong id="storeUpiId">your-store@upi</strong>. Enter the UPI transaction reference in your order. Your payment remains unverified until the store confirms it.</p><label>UPI transaction reference (optional)<input id="upiReference" maxlength="100" placeholder="Enter after paying, if already paid"></label></div><div class="notice">Order totals are calculated again when the order is saved. Never share your UPI PIN or OTP.</div><button class="btn btn-primary full" type="submit" id="placeOrderBtn">Place order</button><p id="checkoutError" class="error"></p></form></div></dialog>
+
+<dialog id="ordersDialog" class="modal wide"><div class="modal-head"><div><p class="eyebrow">ORDER HISTORY</p><h2>My orders</h2></div><button class="icon-btn" data-close="ordersDialog">×</button></div><div class="modal-body" id="ordersList"></div></dialog>
+<dialog id="successDialog" class="modal"><div class="modal-body success-state"><div class="success-icon">✓</div><p class="eyebrow">ORDER RECEIVED</p><h2>Thanks for your order!</h2><p id="successText" class="muted"></p><button class="btn btn-primary full" data-close="successDialog">Continue shopping</button></div></dialog>
+<script type="module" src="app.js"></script>
+</body></html>
